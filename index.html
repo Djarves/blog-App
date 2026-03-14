@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,38 +8,43 @@
 </head>
 <body>
 
-    <h1 class="headin">Список статей</h1>
+   <h1>Приложение блог</h1>
 
-    <div class="container">
+    <div class="row">
         <div class="col">
-            <h2>Новая статья</h2>
-       
-        <input  
-            class="heading"
-            type="text"
-            placeholder="Заголовок">
-        <input 
+             <h2>Новый пост</h2>
 
-            class="title"
-            type="text"
-            placeholder="Текст">
-        <input 
+                <input 
+                    class="js-post-title-input post-title-input" 
+                    type="text"
+                    placeholder="Заголовок">
 
-            class="date" 
-            type="text"
-            placeholder="Дата">
+                <input 
+                    class="js-post-text-input post-text-input"
+                    type="text"
+                    placeholder="Tекст">    
 
-    <button id="entrance" class="btn">Опубликовать</button>
-     </div>
-     <div class="col">
-        <h2>Лента</h2>
-        <div class="posts">
-            лента пуста...
+                <button class="js-new-post-btn new-post-btn">
+                     Опубликовать
+                </button>
+
+                <div id="validationMessage" 
+                     class="validationMessage validationMessage_hidden">
+                    Длина заголовка не должна превышать 100 символов
+                </div>
         </div>
+        <div class="col">
+             <div class="posts-section">
+                <h2>Лента</h2>
 
+                <div class="js-posts posts">
+                    Лента пуста...
+                </div>
+
+            </div>
+        </div>
     </div>
-    </div>
-    
+
     <script src="main.js"></script>
 </body>
 </html>

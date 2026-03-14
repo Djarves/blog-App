@@ -1,56 +1,37 @@
-body {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0;
-}
-
-
-.headin {
-    margin-bottom: 60px;
-    margin-left: 200px;
-    font-size: 45px;
-}
-
-.heading {
-    height: 40px;
+.post-title-input {
+    display: block;
+    box-sizing: border-box;
     margin-bottom: 20px;
-    font-size: 24px;
-}
-
-.title {
-    height: 140px;
-    margin-bottom: 20px;
-    font-size: 24px;
-}
-
-.date {
-    height: 40px;
-    margin-bottom: 40px;
-    font-size: 24px;
-}
-
-.btn {
-    height: 35px;
     width: 300px;
-    background-color: blue;
-    color: white;
-    font-size: 20px;
 }
 
-.container {
+.post-text-input {
+    display: block;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    width: 300px;  
+}
+
+.new-post-btn {
+    box-sizing: border-box;
+    width: 300px;
+    height: 30px;
+}
+
+.row {
     display: flex;
-    justify-content: space-between;
+    gap: 30px;
 }
 
-.col {
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.validationMessage {
+    margin-top: 10px;
+    color: rgb(231, 9, 9);
+    font-size: 13px;
 }
 
-
-
+.validationMessage_hidden {
+    display: none;
+}
 
 
 
