@@ -1,7 +1,7 @@
 const posts = [];
 
-const TITLE_VALIDATION_LIMIT = 100;
-const TEXT_VALIDATION_LIMIT = 100;
+const TITLE_VALIDATION_LIMIT = 50;
+const TEXT_VALIDATION_LIMIT = 150;
 
 const postTitleInputNode = document.querySelector('.js-post-title-input');
 const postTextInputNode = document.querySelector('.js-post-text-input');
@@ -21,18 +21,26 @@ newPostBtnNode.addEventListener('click', function() {
 });
 
 
-postTitleInputNode.addEventListener('change', function(event) {
-    const currentValue = event.target.value;
-    console.log('change', currentValue, currentValue.length);
-    if (currentValue.length > 100) {
+postTitleInputNode.addEventListener('change', validation);
+
+function validation(){
+   const titleLen = postTitleInputNode.value.length; 
+   const textLen = postTextInputNode.value.length;
+
+   if (titleLen > TITLE_VALIDATION_LIMIT) {
        validationMessage.innerText = `Длина заголовка не должна превышать ${TITLE_VALIDATION_LIMIT} символов`;
        validationMessage.classList.remove('validationMessage_hidden');
-    } else {
-       validationMessage.classList.add('validationMessage_hidden'); 
-    }
-});
+       return;
+   }
 
+   if (textLen > TEXT_VALIDATION_LIMIT) {
+       validationMessage.innerText = `Длина текста не должна превышать ${TEXT_VALIDATION_LIMIT} символов`;
+       validationMessage.classList.remove('validationMessage_hidden');
+       return;
+   }
 
+   validationMessage.classList.add('validationMessage_hidden');
+}
 
 function getPostFromUser() {
     const title = postTitleInputNode.value;
@@ -45,9 +53,12 @@ function getPostFromUser() {
 }
 
 function addPost({ title, text }) {
+    const currentDate = new Date();
+    const dt = currentDate.toLocaleString();
     posts.push({
-        title: title,
-        text: text
+         dt,
+         title,
+         text,
     });
 }
 
@@ -63,6 +74,7 @@ function renderPosts() {
     posts.forEach(post => {
         postsHTML += `
         <div class='post'>
+            <p class='post__date'>${post.dt}</p>
             <p class='post__title'>${post.title}</p>
             <p class='post__text'>${post.text}</p>
         </div>

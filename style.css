@@ -12,6 +12,14 @@
     width: 300px;  
 }
 
+.post__title {
+    font-weight: 700;
+}
+
+.post__date {
+    color: rgb(101, 105, 101);
+}
+
 .new-post-btn {
     box-sizing: border-box;
     width: 300px;
@@ -32,6 +40,3 @@
 .validationMessage_hidden {
     display: none;
 }
-
-
-

@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>blog App</title>
+    <title>BlogApp</title>
     <link rel="stylesheet" href="style.css">
+
 </head>
 <body>
-
-   <h1>Приложение блог</h1>
+    <h1>Приложение блог</h1>
 
     <div class="row">
         <div class="col">
@@ -19,10 +19,11 @@
                     type="text"
                     placeholder="Заголовок">
 
-                <input 
+                <textarea 
                     class="js-post-text-input post-text-input"
                     type="text"
-                    placeholder="Tекст">    
+                    placeholder="Tекст">
+                </textarea>   
 
                 <button class="js-new-post-btn new-post-btn">
                      Опубликовать
@@ -30,7 +31,6 @@
 
                 <div id="validationMessage" 
                      class="validationMessage validationMessage_hidden">
-                    Длина заголовка не должна превышать 100 символов
                 </div>
         </div>
         <div class="col">
@@ -45,6 +45,10 @@
         </div>
     </div>
 
+  
+
+   
+    
     <script src="main.js"></script>
 </body>
 </html>
