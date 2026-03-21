@@ -21,7 +21,7 @@ class View {
             <div>
                 <p class='post__date'>${post.dt}</p>
                 <p class='post__title'>${post.title}</p>
-                <p class='post__text'>${post.text}</p>
+                <p class='post__text'>${post.body}</p>
             </div>
            `; 
         });
@@ -29,10 +29,6 @@ class View {
         this.postsNode.innerHTML = postsHTML;
     }
 
-     clearInputs() {
-        this.postTitleInputNode.value = '';
-        this.postTextInputNode.value = '';
-    }
 
      showError(message) {
         this.validationMessage.innerText = message;
@@ -41,5 +37,18 @@ class View {
 
     hideError() {
         this.validationMessage.classList.add('validationMessage_hidden');
+    }
+
+        clearInputs() {
+        this.postTitleInputNode.value = '';
+        this.postTextInputNode.value = '';
+    }
+
+     disableButton() {
+        this.newPostBtnNode.disabled = true;
+    }
+
+    enableButton() {
+        this.newPostBtnNode.disabled = false;
     }
 }

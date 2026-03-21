@@ -10,29 +10,45 @@ class Controller {
     }
 
     init() {
+        // кнопка
         this.view.newPostBtnNode.addEventListener('click', () => {
             this.handleAddPost();
         });
 
+        // 🔥 СЛУШАЕМ ОБА ИНПУТА
         this.view.postTitleInputNode.addEventListener('input', () => {
             this.validate();
         });
+
+        this.view.postTextInputNode.addEventListener('input', () => {
+            this.validate();
+        });
+    }
+
+    // ✅ ЕДИНАЯ ВАЛИДАЦИЯ
+    getValidationError(title, text) {
+        if (!title || !text) {
+            return 'Заполните все поля';
+        }
+
+        if (title.length > TITLE_VALIDATION_LIMIT) {
+            return `Длина заголовка не должна превышать ${TITLE_VALIDATION_LIMIT} символов`;
+        }
+
+        if (text.length > TEXT_VALIDATION_LIMIT) {
+            return `Длина текста не должна превышать ${TEXT_VALIDATION_LIMIT} символов`;
+        }
+
+        return null;
     }
 
     handleAddPost() {
         const { title, text } = this.view.getPostFromUser();
 
-        if (title.length > TITLE_VALIDATION_LIMIT) {
-            this.view.showError(
-              `Длина заголовка не должна превышать ${TITLE_VALIDATION_LIMIT} символов`
-            );
-            return;
-        }
+        const error = this.getValidationError(title, text);
 
-        if (text.length > TEXT_VALIDATION_LIMIT) {
-            this.view.showError(
-              `Длина текста не должна превышать ${TEXT_VALIDATION_LIMIT} символов`
-            );
+        if (error) {
+            this.view.showError(error);
             return;
         }
 
@@ -44,25 +60,20 @@ class Controller {
         this.view.renderPosts(posts);
 
         this.view.clearInputs();
+        this.view.disableButton(); // после очистки кнопка снова блокируется
     }
 
     validate() {
         const { title, text } = this.view.getPostFromUser();
 
-        if (title.length > TITLE_VALIDATION_LIMIT) {
-            this.view.showError(
-              `Длина заголовка не должна превышать ${TITLE_VALIDATION_LIMIT} символов`
-            );
-            return;
-        }
+        const error = this.getValidationError(title, text);
 
-        if (text.length > TEXT_VALIDATION_LIMIT) {
-            this.view.showError(
-              `Длина текста не должна превышать ${TEXT_VALIDATION_LIMIT} символов`
-            );
-            return;
+        if (error) {
+            this.view.showError(error);
+            this.view.disableButton(); // 🔴 блок
+        } else {
+            this.view.hideError();
+            this.view.enableButton(); // 🟢 можно нажать
         }
-
-        this.view.hideError();
     }
 }
